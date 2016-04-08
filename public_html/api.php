@@ -176,9 +176,8 @@ $ptime = microtime(true);
 $b4 = number_format(microtime(true)-$ptime,3);
 $bges = number_format(microtime(true)-$gtime,3);
 #file_put_contents('/data/project/xtools/api_test', "\t$db\t$pagetitle\t$b1\t$b2\t$b3\t$b4\t$bges\n\n", FILE_APPEND );
-if ($lang = "de"){
+if ($lang == "de"){
 	#file_put_contents('/data/project/xtools/api_test', session_id()."\t$pagetitle".json_encode($_COOKIE)."\t$cookie\n\n", FILE_APPEND );
-}
 }
 catch(Exception $e){
 	echo "xpagehistory.resultloaded('maintenance')";
