@@ -502,26 +502,27 @@ class ArticleInfo {
 					) )
 				);
 			
-			$skip = ( $this->namespace === 0 && $wi->domain == "en.wikipedia.org" ) ? "" : "skip";
-#			$apibase = "https://tools.wmflabs.org/${skip}enwp10/cgi-bin/list2.fcgi?";
-			$apibase = "https://tools.wmflabs.org/${skip}enwp10/cgi-bin/log.fcgi?";
-			$query[] = array(
-					"type" => "api",
-					"src" => "plainhtml",
-					"timeout" => 0,
-					"query" => $apibase.http_build_query( array(
-						'project' => '',
-						'ns' => 0,
-						'namespace' => 0,
-						'pagename' => str_replace(" ", "_", @$this->pagetitleFull),
-						'limit' => '50',
-						'offset' => 1,
-						'sorta' => 'Importance',
-						'releaseFilter' => 0
-							
-					) )
-				);
-			
+
+                if ($this->namespace === 0 && $wi->domain == "en.wikipedia.org") {
+	                $apibase = "https://tools.wmflabs.org/enwp10/cgi-bin/log.fcgi?";
+	                $query[] = array(
+	                                "type" => "api",
+	                                "src" => "plainhtml",
+	                                "timeout" => 0,
+	                                "query" => $apibase.http_build_query( array(
+	                                        'project' => '',
+	                                        'ns' => 0,
+	                                        'namespace' => 0,
+	                                        'pagename' => str_replace(" ", "_", @$this->pagetitleFull),
+	                                        'limit' => '50',
+	                                        'offset' => 1,
+	                                        'sorta' => 'Importance',
+	                                        'releaseFilter' => 0
+
+	                                ) )
+	                        );
+                }
+
 			$links = 0;
 // 			foreach ( (array)$this->extlinks as $i => $link ){
 // 				$query2[] = array(
