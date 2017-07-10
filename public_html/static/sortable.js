@@ -123,7 +123,7 @@ function ts_resortTable(lnk) {
                 sortfn = ts_sort_date;
         if (itm.match(/^[\u00a3$\u20ac]/)) // pound dollar euro
                 sortfn = ts_sort_currency;
-        if (itm.match(/^[\d.,]+\%?$/))
+        if (itm.match(/^[\d.,  ]+\%?$/))
                 sortfn = ts_sort_numeric;
 
         var reverse = (span.getAttribute("sortdir") == 'down');
@@ -217,7 +217,7 @@ function ts_dateToSortKey(date) {
 
 function ts_parseFloat(num) {
         if (!num) return 0;
-        num = parseFloat(num.replace(/[,.]/g, '' ));
+        num = parseFloat(num.replace(/[,.  ]/g, '' ));
         return (isNaN(num) ? 0 : num);
 }
 
